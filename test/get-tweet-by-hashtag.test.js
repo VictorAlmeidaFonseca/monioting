@@ -6,7 +6,7 @@ describe(`Twitter's services`, () => {
 
     it('should get twitter only by hashtag', async () => {
       const response = await getTweetsByHashtag(mockHashtag)
-      expect(response.status).toEqual(200)
+      expect(response.status).toEqual(200)    
       expect(response.data.data.some(data => data.text.includes(mockHashtag))).toBe(true)     
     })
 

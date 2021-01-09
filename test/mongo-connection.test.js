@@ -1,6 +1,7 @@
 const database = require('../src/config/db-connection')
 
 describe('Should connect at mongodb Atlas', () => {
+
     beforeAll(async () => {
       await database.connect()
     })  
