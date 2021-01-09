@@ -1,4 +1,3 @@
-require('dotenv').config()
 const hasCharacter = require('../utils/has-characters')
 const twitter = require('../config/twitter-connection')
 
