@@ -1,4 +1,4 @@
-const twitter = require('../src/services/twitter')
+const twitter = require('../src/config/twitter-connection')
 const mockTwitterTittles = require('../mocks/twitter-tittles.json')
 
 const params = {
