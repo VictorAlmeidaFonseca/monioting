@@ -1,5 +1,5 @@
-const { insertOne, find } = require('../src/dao/twitterDAO')
-const database = require('../src/config/db-connection')
+const { insertOne, find } = require('../../src/dao/twitterDAO')
+const database = require('../../src/config/db-connection')
 
 mockDocument = {
     "id": Math.random(),

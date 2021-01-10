@@ -7,13 +7,10 @@ const globalParams = {
     'tweet.fields' : 'created_at,lang,geo'
 }
 
-async function getTweetsByHashtag(query) {
-    const customParams = { ...globalParams, query}
+async function searchByQuery(query) {
+    const customParams = { ...globalParams, query}    
     
-    try {        
-        const hasHashtag = hasCharacter(query, '#')        
-        if(!hasHashtag) throw `query must be a hashtag!`
-
+    try {   
         const response = await twitter.get('tweets/search/recent', { params: customParams }) 
         return response
 
@@ -51,6 +48,6 @@ async function getTotalFollwersByUserId(id) {
     }
 }
 
-module.exports = { getTweetsByHashtag, getTotalFollwersByUserId }
+module.exports = { searchByQuery, getTotalFollwersByUserId }
 
 

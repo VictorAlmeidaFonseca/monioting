@@ -1,4 +1,4 @@
-const database = require('../src/config/db-connection')
+const database = require('../../src/config/db-connection')
 
 describe('Should connect at mongodb Atlas', () => {
 

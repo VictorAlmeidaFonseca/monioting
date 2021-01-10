@@ -1,5 +1,5 @@
-function hasCharacters(string, characters) {
-    return string.includes(characters)
+function hasCharacters(character,string) {
+    return new RegExp(character).test(string)
 }
 
 module.exports = hasCharacters

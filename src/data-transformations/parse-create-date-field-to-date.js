@@ -1,13 +1,16 @@
 const convertToDate = require('../utils/convert-to-date')
 
 async function parseCreateAtFieldToDate(tweetInfo) {
-    const parsedTweetInfo = tweetInfo
-
-    for (const info of parsedTweetInfo) {
-        await convertToDate(info.created_at)
-    }
-    
-    return parsedTweetInfo
+    return tweetInfo.map(info => {
+       const  { tweet_id, author_id,  username, name, lang, created_at } = info      
+       return { 
+           name,
+           lang,
+           username,
+           tweet_id,
+           author_id,
+           created_at: convertToDate(created_at)
+    }})  
 }
 
 module.exports = parseCreateAtFieldToDate

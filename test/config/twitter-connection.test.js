@@ -1,8 +1,7 @@
-const twitter = require('../src/config/twitter-connection')
-const mockTwitterTittles = require('../mocks/twitter-tittles.json')
+const twitter = require('../../src/config/twitter-connection')
 
 const params = {
-    ids : mockTwitterTittles.ids
+    ids : "1347616021134372864"
 }
 
 describe('Connect at twitter api', () => {   
