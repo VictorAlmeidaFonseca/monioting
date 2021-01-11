@@ -20,31 +20,12 @@ async function searchByQuery(query) {
 }
 
 async function getTotalFollwersByUserId(id) {
-    let followers = 0
          
     try {        
-        do {
-            const response = await twitter.get(`users/${id}/followers`)
-            const { result_count } = response.data.meta
-            followers += result_count          
-            
-            if(response.data.meta.next_token) {
-                const params = { pagination_token : response.data.meta.next_token }
-                const nextPage = await twitter.get(`users/${id}/followers`, { params })
-                const { result_count } = nextPage.data.meta
-                followers += result_count                        
-            
-            } else {
-                break
-            } 
-        
-        } while (true);  
-      
-        return followers
-
+       const response = await twitter.get(`users/${id}/followers`)
+       return response 
     } catch (error) {       
-         throw error
-       
+         throw error       
     }
 }
 

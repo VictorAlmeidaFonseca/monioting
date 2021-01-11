@@ -4,4 +4,4 @@ function parseCreateAtFieldToISO(field) {
     return  parseISO(field)    
 }
 
-module.exports = parseISO
+module.exports = parseCreateAtFieldToISO

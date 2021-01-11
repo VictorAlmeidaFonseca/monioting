@@ -1,75 +1,30 @@
 require('dotenv').config()
 
 const searchTweetsInfoByTag = require('../functions/search-tweetsinfo-by-tag')
-const validade
+const validadeTagAtTweet = require('../functions/validade-exist-tag-at-tweet')
+const groupByTweetUsername = require('../data-transformations/groupy-by-username')
+const concatTweetsDataAndUserData = require('../data-transformations/concat-tweetdata-by-user')
+const addTag = require('../data-transformations/add-tag')
+const parseCreateAtFieldToDate = require('../data-transformations/parse-create-date-field-to-date')  
 
+module.exports = async () =>{
 
-const allTweets = require('../../mocks/all-tweets-by-search-tag.json')
+  const tags = process.env.HASHTAGS.split(',')
 
-fs = require('fs');
-
-
-async function saveTweetsDataAtMongo() {
-  try {
-    
-    const tags =  process.env.HASHTAGS.split(',')
-
-    for(const tag of tags) {
-      const tweetsInfo = await searchTweetsInfoByTag(tag)
-
-    }
-    
-    
-  } catch (error) {
-    
-  }
-}
-
-async function getDataByHasTag(arrayOfTags) {
-    const news = []
-
+  for (const tag of tags) {
     try {
-      for (const tag of allTweets) {
-   
-       
-         
-         news.push(tweets)
-           
-      }
+      const tweetsInfo = await searchTweetsInfoByTag(tag)
+      const tweetsInfoValidated = await validadeTagAtTweet(tag, tweetsInfo)
+      const groupedTweets = await groupByTweetUsername(tweetsInfoValidated)
+      const tweetsAndUserInfo = await concatTweetsDataAndUserData(groupedTweets)
+      const TaggedTweetsInfo = await addTag(tag, tweetsAndUserInfo)
+      const parsedDateTweetsInfo = await parseCreateAtFieldToDate(TaggedTweetsInfo)
 
-      fs.writeFile('/home/linkapi/projects/js/monitoring/mocks/all-tweets-by-search-tag.json', JSON.stringify(news, null, 2) , function (err,data) {
-        if (err) {
-          return console.log(err);
-        }
-        console.log(data);
-      });
-
-      return news 
-        
+      
     } catch (error) {
-        throw error
+      throw error
     }
+  }
+
+
 }
-
-
-const test = (arr) =>  getDataByHasTag(arr)
-
-
-test(HashTags)
-
-// async function saveTwitterDataAtMongo ()  {
-//     try {
-           
-        
-
-        
-//     } catch (error) {
-        
-//     }
-// }
-
-
-
-// for(const tag of HashTags) {
-//     await
-// }

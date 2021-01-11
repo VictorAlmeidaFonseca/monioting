@@ -22,14 +22,6 @@ describe('Test Utils Modules', () => {
 
     it('shoud groupy payload by author_id', () => {
        const result = groupyBy(mockeTweetData, 'author_id')
-       fs.writeFile('/home/linkapi/projects/js/monitoring/mocks/tweet-info-grouped-by.json', JSON.stringify(result, null, 2) , function (err,data) {
-        if (err) {
-          return console.log(err);
-        }
-        console.log(data);
-      });  
-
-
     })
 
 })
