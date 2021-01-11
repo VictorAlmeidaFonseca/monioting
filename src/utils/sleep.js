@@ -1,4 +1,4 @@
- async function spleep (milliseconds){
+ async function sleep (milliseconds){
    
     const date = Date.now();   
     let currentDate = null;
@@ -9,4 +9,6 @@
     } while (currentDate - date < milliseconds);
 
 };
+
+module.exports = sleep
  

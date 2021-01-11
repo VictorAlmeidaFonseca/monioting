@@ -19,16 +19,16 @@ async function searchByQuery(query) {
     }
 }
 
-async function getTotalFollwersByUserId(id) {
+async function getFollwersByUserId(id, aditionalParams) {  
          
     try {        
-       const response = await twitter.get(`users/${id}/followers`)
+       const response = await twitter.get(`users/${id}/followers`, { params : aditionalParams} )
        return response 
     } catch (error) {       
          throw error       
     }
 }
 
-module.exports = { searchByQuery, getTotalFollwersByUserId }
+module.exports = { searchByQuery, getFollwersByUserId }
 
 

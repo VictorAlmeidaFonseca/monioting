@@ -24,6 +24,17 @@ async function insertOne(body) {
     }
 }
 
+async function insertMany(body) {
+  try {
+    await setDbParams()
+
+    const insert = await collection.insertMany(body)
+    return insert        
+  } catch (error) {
+      throw error
+  }
+}
+
 async function find(query) {
   try {
 
@@ -37,5 +48,5 @@ async function find(query) {
 }
 
 
-module.exports = { insertOne, find }
+module.exports = { insertOne, insertMany, find }
 
