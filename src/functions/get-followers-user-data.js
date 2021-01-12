@@ -2,11 +2,13 @@ const { getFollwersByUserId } = require('../services/twitter')
 const sleep = require('../utils/sleep')
 
 async function getTotalFollowersByUserData(tweetsInfoData) {      
-    try {
-      const getFollowerUserData = await Promise.all(tweetsInfoData.map(async (tweets) => {  
+ const getFollowerUserData = []
+  
+  try {
+      for (const tweets of tweetsInfoData) {
         const followersNumber = await getfollowersData(tweets.author_id)      
-        return { followersNumber, ...tweets }
-      }))  
+          getFollowerUserData.push({ followersNumber, ...tweets })
+      }   
 
       return getFollowerUserData
         
