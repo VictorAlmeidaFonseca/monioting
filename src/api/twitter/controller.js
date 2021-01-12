@@ -13,3 +13,18 @@ async function getTopFollowers(req, res) {
         throw error
     }
 }
+
+async function sumBydate(req, res) {
+   const query = [
+       {"$unwind":"$userTweets"},
+       {"$group" : "$created_at", "count":{$sum:1}},
+       {"$project":{"$userTweets":1}}     
+   ]       
+    try {
+        const groupTweetsByDay = await find(query)
+        return res.status(200).json(getUsersHasMoreFollowers)
+
+    } catch (error) {
+        return res.status(400).json(error)
+    }
+} 
